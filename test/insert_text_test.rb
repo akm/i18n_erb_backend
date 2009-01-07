@@ -41,4 +41,19 @@ class InsertTextTest < Test::Unit::TestCase
     assert_equal "価格", I18n.t(:'activerecord.attributes.product.price')
   end
   
+  
+  def test_to_properties
+    assert_equal(
+      File.open(File.join(File.dirname(__FILE__), 'locales', 'yaml2prop_ja.properties')).read,
+      YAML.to_properties(File.join(File.dirname(__FILE__), 'locales', 'yaml2prop_ja.yml'))
+    )
+  end
+  
+  def test_from_properties
+    assert_equal(
+      File.open(File.join(File.dirname(__FILE__), 'locales', 'yaml2prop_ja.yml')).read,
+      YAML.from_properties(File.join(File.dirname(__FILE__), 'locales', 'yaml2prop_ja.properties'))
+    )
+  end
+  
 end
